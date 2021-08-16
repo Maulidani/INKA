@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardSudahDijadwalkanService"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parentNameList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="24dp">
+
+            <TextView
+                android:id="@+id/tvChildname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="18dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/icDetails"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Dzaky" />
+
+            <ImageView
+                android:id="@+id/icDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parentDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="24dp">
+
+            <TextView
+                android:id="@+id/tvNameInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama : "
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/tvNameInfo"
+                app:layout_constraintTop_toTopOf="@id/tvNameInfo"
+                tools:text="Dzaky" />
+
+            <TextView
+                android:id="@+id/tvBirthInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Tangga Lahir : "
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameInfo" />
+
+            <TextView
+                android:id="@+id/tvBirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/tvBirthInfo"
+                app:layout_constraintTop_toTopOf="@id/tvBirthInfo"
+                tools:text="13 Juni 2021" />
+
+            <TextView
+                android:id="@+id/tvGenderInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Jenis Kelamin : "
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBirthInfo" />
+
+            <TextView
+                android:id="@+id/tvGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/tvGenderInfo"
+                app:layout_constraintTop_toTopOf="@id/tvGenderInfo"
+                tools:text="Laki-laki" />
+
+            <TextView
+                android:id="@+id/tvAddressInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Alamat : "
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGenderInfo" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/tvAddressInfo"
+                app:layout_constraintTop_toTopOf="@id/tvAddressInfo"
+                tools:text="jl. goa ria" />
+
+            <TextView
+                android:id="@+id/tvDesaKelurahanInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Desa/Kelurahan: "
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddressInfo" />
+
+            <TextView
+                android:id="@+id/tvDesaKelurahan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/tvDesaKelurahanInfo"
+                app:layout_constraintTop_toTopOf="@id/tvDesaKelurahanInfo"
+                tools:text="Biringkanaya" />
+
+
+            <TextView
+                android:id="@+id/tvFatherInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Nama Orang tua (Bapak) : "
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDesaKelurahanInfo" />
+
+            <TextView
+                android:id="@+id/tvFather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/tvFatherInfo"
+                app:layout_constraintTop_toTopOf="@id/tvFatherInfo"
+                tools:text="Mahmud" />
+
+
+            <TextView
+                android:id="@+id/tvMotherInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Nama Orang tua (Ibu) : "
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFatherInfo" />
+
+            <TextView
+                android:id="@+id/tvMother"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/tvMotherInfo"
+                app:layout_constraintTop_toTopOf="@id/tvMotherInfo"
+                tools:text="Minasa" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
