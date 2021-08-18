@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class VaccineRequestFragment : Fragment() {
+class VaccineRequestFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var adapter: RequestVaccineAdapter
 
@@ -42,28 +42,78 @@ class VaccineRequestFragment : Fragment() {
         binding.rv.layoutManager = layoutManager
 
         getVaccineRequest("", "belum_selesai")
+
+        binding.fabAdd.setOnClickListener {
+            binding.parentAdd.visibility = View.VISIBLE
+        }
+        binding.btnCancel.setOnClickListener {
+            binding.parentAdd.visibility = View.INVISIBLE
+        }
+        binding.btnAdd.setOnClickListener {
+            addVaccineRequest("","1","5","","belum_selesai")
+        }
     }
 
     private fun getVaccineRequest(user: String, status: String) {
-        ApiClient.instances.vaccineRequest(user, status).enqueue(object : Callback<DataResponse> {
-            override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
-                val value = response.body()?.value
-                val message = response.body()?.message
-                val result = response.body()?.result
+        ApiClient.instances.vaccineRequest(user, status)
+            .enqueue(object : Callback<DataResponse> {
+                override fun onResponse(
+                    call: Call<DataResponse>,
+                    response: Response<DataResponse>
+                ) {
+                    val value = response.body()?.value
+                    val message = response.body()?.message
+                    val result = response.body()?.result
 
-                if (response.isSuccessful && value == "1") {
-                    adapter = RequestVaccineAdapter(result!!)
-                    binding.rv.adapter = adapter
-                    adapter.notifyDataSetChanged()
+                    if (response.isSuccessful && value == "1") {
+                        adapter = RequestVaccineAdapter(result!!, this@VaccineRequestFragment)
+                        binding.rv.adapter = adapter
+                        adapter.notifyDataSetChanged()
 
-                } else {
-                    Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-                Toast.makeText(requireActivity(), t.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onFailure(call: Call<DataResponse>, t: Throwable) {
+                    Toast.makeText(requireActivity(), t.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+    }
+
+    override fun refreshView() {
+        getVaccineRequest("", "belum_selesai")
+    }
+
+    private fun addVaccineRequest(
+        id: String,
+        user: String,
+        vaccine: String,
+        vaccinedDate: String,
+        status: String
+    ) {
+        ApiClient.instances.vaccineRequestPost(id, user, vaccine, vaccinedDate, status)
+            .enqueue(object :
+                Callback<DataResponse> {
+                override fun onResponse(
+                    call: Call<DataResponse>,
+                    response: Response<DataResponse>
+                ) {
+                    val value = response.body()?.value
+                    val message = response.body()?.message
+
+                    if (response.isSuccessful && value == "1") {
+                        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<DataResponse>, t: Throwable) {
+                    Toast.makeText(requireActivity(), t.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
     }
 }

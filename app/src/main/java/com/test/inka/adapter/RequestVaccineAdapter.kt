@@ -4,15 +4,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.inka.R
 import com.test.inka.databinding.ItemVaccineRequestBinding
+import com.test.inka.model.DataResponse
 import com.test.inka.model.DataResult
+import com.toyota.toyserv.network.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RequestVaccineAdapter(
     private val vaccineList: ArrayList<DataResult>,
-
-    ) :
+    private val mListener: iUserRecycler
+) :
     RecyclerView.Adapter<RequestVaccineAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemVaccineRequestBinding) :
@@ -43,7 +49,47 @@ class RequestVaccineAdapter(
                 notifyDataSetChanged()
             }
 
+            if (dataList.status == "selesai") {
+                binding.btnSelesai.visibility = View.GONE
+                binding.tvDate.text = dataList.vaccined_date
+            } else {
+                binding.btnSelesai.visibility = View.VISIBLE
+            }
 
+            binding.btnSelesai.setOnClickListener {
+                upDateVaccineRequest(dataList.id, "", "", "selesai","selesai")
+            }
+        }
+
+        private fun upDateVaccineRequest(
+            id: String,
+            user: String,
+            vaccine: String,
+            vaccinedDate: String,
+            status: String
+        ) {
+            ApiClient.instances.vaccineRequestPost(id, user,vaccine, vaccinedDate,status).enqueue(object :
+                Callback<DataResponse> {
+                override fun onResponse(
+                    call: Call<DataResponse>,
+                    response: Response<DataResponse>
+                ) {
+                    val value = response.body()?.value
+                    val message = response.body()?.message
+
+                    if (response.isSuccessful && value == "1") {
+                        Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
+                        mListener.refreshView()
+                    } else {
+                        Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<DataResponse>, t: Throwable) {
+                    Toast.makeText(itemView.context, t.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
         }
     }
 
@@ -58,4 +104,8 @@ class RequestVaccineAdapter(
     }
 
     override fun getItemCount(): Int = vaccineList.size
+
+    interface iUserRecycler {
+        fun refreshView()
+    }
 }

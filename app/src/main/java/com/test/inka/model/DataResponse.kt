@@ -15,5 +15,6 @@ data class DataResult(
     val desa_kelurahan_name: String,
     val vaccine_date: String,
     val status: String,
+    val vaccined_date:String,
     var expendable: Boolean = false
 )
