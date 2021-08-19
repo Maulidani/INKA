@@ -66,7 +66,7 @@ class AccountFragment : Fragment() {
 
                     if (result.isEmpty()){
                         binding.tvKeterangan.visibility = View.VISIBLE
-                        binding.tvKeterangan.text = "Belum ada jadwal riwayat"
+                        binding.tvKeterangan.text = "Belum ada akun"
                     }
                 } else {
                     Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
