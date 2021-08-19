@@ -62,14 +62,24 @@ class AccountFragment : Fragment() {
                     adapter = AccountAdapter(result!!)
                     binding.rv.adapter = adapter
                     adapter.notifyDataSetChanged()
+                    binding.tvKeterangan.visibility = View.INVISIBLE
 
+                    if (result.isEmpty()){
+                        binding.tvKeterangan.visibility = View.VISIBLE
+                        binding.tvKeterangan.text = "Belum ada jadwal riwayat"
+                    }
                 } else {
                     Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                    binding.tvKeterangan.visibility = View.VISIBLE
+                    binding.tvKeterangan.text = "Terjadi Kesalahan"
                 }
             }
 
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-                Toast.makeText(requireActivity(), t.message.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), t.message.toString(), Toast.LENGTH_SHORT)
+                    .show()
+                binding.tvKeterangan.visibility = View.VISIBLE
+                binding.tvKeterangan.text = "Periksa koneksi internet anda"
             }
 
         })

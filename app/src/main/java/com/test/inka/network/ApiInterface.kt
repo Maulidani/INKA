@@ -67,4 +67,9 @@ interface ApiInterface {
     fun account(
     ): Call<DataResponse>
 
+    @GET("get_notification.php")
+    fun getNotification(
+        @Query("id") id: String
+    ): Call<DataResponse>
+
 }

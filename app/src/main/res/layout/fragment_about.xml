@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.AboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="32dp">
+
+        <TextView
+            android:id="@+id/tvInka"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INKA (Imunisasi Kita)"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTentang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/tentang"
+            app:layout_constraintTop_toBottomOf="@id/tvInka" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

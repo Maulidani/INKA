@@ -90,8 +90,11 @@ class VaccineRequestFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
             val childName = binding.inputChildName.text.toString()
             val vaccine = binding.inputVaccine.text.toString()
 
-            Log.e("hasil : ", "$childName  $vaccine")
-            addVaccineRequest("", childName, vaccine, "", "belum_selesai")
+            if (childName.isEmpty() || vaccine.isEmpty()){
+                Toast.makeText(requireActivity(), "data tidak boleh ada y6ang kosong", Toast.LENGTH_SHORT).show()
+            } else {
+                addVaccineRequest("", childName, vaccine, "", "belum_selesai")
+            }
         }
     }
 
@@ -111,14 +114,24 @@ class VaccineRequestFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
                         binding.rv.adapter = adapter
                         adapter.notifyDataSetChanged()
                         binding.parentAdd.visibility = View.INVISIBLE
+                        binding.tvKeterangan.visibility = View.INVISIBLE
+
+                        if (result.isEmpty()){
+                            binding.tvKeterangan.visibility = View.VISIBLE
+                            binding.tvKeterangan.text = "Belum ada jadwal imunisasi"
+                        }
                     } else {
                         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                        binding.tvKeterangan.visibility = View.VISIBLE
+                        binding.tvKeterangan.text = "Terjadi Kesalahan"
                     }
                 }
 
                 override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                     Toast.makeText(requireActivity(), t.message.toString(), Toast.LENGTH_SHORT)
                         .show()
+                    binding.tvKeterangan.visibility = View.VISIBLE
+                    binding.tvKeterangan.text = "Periksa koneksi internet anda"
                 }
             })
     }

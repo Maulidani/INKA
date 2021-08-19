@@ -19,6 +19,7 @@ class AccountAdapter(
         fun bind(dataList: DataResult) {
 
             binding.tvChildname.text = dataList.name
+            binding.tvName.text = dataList.name
             binding.tvBirth.text = dataList.birth
             binding.tvGender.text = dataList.gender
             binding.tvDesaKelurahan.text = dataList.desa_kelurahan_name

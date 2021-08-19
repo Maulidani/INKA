@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 sharedPref.logout()
                 Toast.makeText(this@MainActivity, "Keluar", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(Intent(this@MainActivity, LoginActivity::class.java)))
+                finish()
             } else {
                 logout(id)
             }
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         if (userType == "admin") {
             binding.tvBirthInfo.text = userType
             binding.tvBirth.visibility = View.VISIBLE
+            binding.imgCardThree.setImageResource(R.drawable.ic_account)
             binding.tvCardthree.text = "akun"
         }
 
@@ -82,6 +84,15 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
             }
+        }
+
+        binding.cardFour.setOnClickListener {
+            startActivity(
+                Intent(this, MenuActivity::class.java).putExtra(
+                    "menu",
+                    "about"
+                )
+            )
         }
     }
 

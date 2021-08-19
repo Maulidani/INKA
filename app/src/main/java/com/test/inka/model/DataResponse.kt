@@ -40,5 +40,13 @@ data class DataResult(
     val father: String,
     val username: String,
     val password: String,
+
+//    notification
+    val user: String,
+    val title: String,
+    val body: String,
+    val date: String,
+    val created_at: String,
+
     var expendable: Boolean = false
 )

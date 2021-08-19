@@ -5,10 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.test.inka.R
 import com.test.inka.databinding.ActivityMenuBinding
-import com.test.inka.ui.fragment.AccountFragment
-import com.test.inka.ui.fragment.HistoryFragment
-import com.test.inka.ui.fragment.NotificationFragment
-import com.test.inka.ui.fragment.VaccineRequestFragment
+import com.test.inka.ui.fragment.*
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
@@ -34,6 +31,9 @@ class MenuActivity : AppCompatActivity() {
             }
             "notification" -> {
                 loadFragment(NotificationFragment())
+            }
+            "about" -> {
+                loadFragment(AboutFragment())
             }
         }
     }

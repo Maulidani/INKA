@@ -21,7 +21,22 @@ import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    var desaKelurahan = listOf("1", "1", "3", "4", "5", "6", "7")
+    var desaKelurahan = listOf(
+        "kelurahan awang tangka",
+        "pude",
+        "gona",
+        "mallahae",
+        "buareng",
+        "lappabosse",
+        "abbumpungeng",
+        "waetuo",
+        "raja",
+        "lemo",
+        "bulu tanah",
+        "kalero",
+        "tarasu",
+        "polewali"
+    )
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +73,25 @@ class RegisterActivity : AppCompatActivity() {
             val username = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
 
+            var idDesaKelurahan:String? = null
+
+            when (desaKelurahan) {
+                "kelurahan awang tangka" -> idDesaKelurahan = "1"
+                "pude" ->  idDesaKelurahan = "2"
+                "gona" ->   idDesaKelurahan = "3"
+                "mallahae" ->   idDesaKelurahan = "4"
+                "buareng" ->   idDesaKelurahan = "5"
+                "lappabosse" ->   idDesaKelurahan = "6"
+                "abbumpungeng" ->   idDesaKelurahan = "7"
+                "waetuo" ->   idDesaKelurahan = "8"
+                "raja" ->   idDesaKelurahan = "9"
+                "lemo" ->   idDesaKelurahan = "10"
+                "bulu tanah" ->   idDesaKelurahan = "11"
+                "kalero" ->   idDesaKelurahan = "12"
+                "tarasu" ->   idDesaKelurahan = "13"
+                "polewali" ->   idDesaKelurahan = "14"
+            }
+
             if (childName.isEmpty() ||
                 birth.isEmpty() ||
                 gender.isEmpty() ||
@@ -74,7 +108,7 @@ class RegisterActivity : AppCompatActivity() {
                     childName,
                     birth,
                     gender,
-                    desaKelurahan,
+                    idDesaKelurahan!!,
                     father,
                     mother,
                     username,

@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    const val URL = "http://192.168.220.5/inka/"
+    const val URL = "https://ancungproject.my.id/inka/"
 
     val instances: ApiInterface by lazy {
         val retrofit = Retrofit.Builder()
