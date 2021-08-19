@@ -3,7 +3,6 @@ package com.test.inka.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.test.inka.R
 import com.test.inka.databinding.ItemAccountBinding
@@ -40,7 +39,7 @@ class AccountAdapter(
             }
 
             binding.parentDetails.setOnClickListener{
-                Toast.makeText(it.context, "edit/hapus", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(it.context, "edit/hapus", Toast.LENGTH_SHORT).show()
             }
 
         }

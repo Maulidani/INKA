@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.inka.adapter.AccountAdapter
-import com.test.inka.adapter.RequestVaccineAdapter
 import com.test.inka.databinding.FragmentAccountBinding
 import com.test.inka.model.DataResponse
 import com.test.inka.ui.activity.RegisterActivity
