@@ -28,9 +28,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentAdd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/parentAdd"
         android:background="@color/greyTransparent"
         android:visibility="invisible">
 
@@ -46,37 +46,47 @@
                 android:layout_height="match_parent"
                 android:padding="24dp">
 
-                <TextView
-                    android:id="@+id/tvDesakelurahanInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Desa/Kelurahan : "
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvTanggalInfo"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/childNameTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Tanggal : "
+                    android:hint="Nama anak"
+                    app:boxBackgroundColor="@color/white"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDesakelurahanInfo" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tvVaccineInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Imunisasi : "
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTanggalInfo" />
+                    <AutoCompleteTextView
+                        android:id="@+id/inputChildName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textSize="12sp"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/tvNamaInfo"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/vaccineTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Nama : "
+                    android:hint="Jenis Imunisasi"
+                    app:boxBackgroundColor="@color/white"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvVaccineInfo" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/childNameTextField">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/inputVaccine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textSize="12sp"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCancel"
@@ -88,7 +98,7 @@
                     android:textSize="12sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/btnAdd"
-                    app:layout_constraintTop_toBottomOf="@id/tvNamaInfo" />
+                    app:layout_constraintTop_toBottomOf="@id/vaccineTextField" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAdd"
@@ -100,7 +110,7 @@
                     android:textSize="12sp"
                     app:layout_constraintLeft_toRightOf="@id/btnCancel"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvNamaInfo" />
+                    app:layout_constraintTop_toBottomOf="@id/vaccineTextField" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -101,30 +101,13 @@
                 tools:text="Laki-laki" />
 
             <TextView
-                android:id="@+id/tvAddressInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Alamat : "
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvGenderInfo" />
-
-            <TextView
-                android:id="@+id/tvAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@+id/tvAddressInfo"
-                app:layout_constraintTop_toTopOf="@id/tvAddressInfo"
-                tools:text="jl. goa ria" />
-
-            <TextView
                 android:id="@+id/tvDesaKelurahanInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Desa/Kelurahan: "
+                android:text="Desa/Kelurahan : "
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAddressInfo" />
+                app:layout_constraintTop_toBottomOf="@+id/tvGender" />
 
             <TextView
                 android:id="@+id/tvDesaKelurahan"

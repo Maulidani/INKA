@@ -51,13 +51,14 @@ class RequestVaccineAdapter(
 
             if (dataList.status == "selesai") {
                 binding.btnSelesai.visibility = View.GONE
+                binding.tvDateInfo.text = "Telah melakukan imunisasi : "
                 binding.tvDate.text = dataList.vaccined_date
             } else {
                 binding.btnSelesai.visibility = View.VISIBLE
             }
 
             binding.btnSelesai.setOnClickListener {
-                upDateVaccineRequest(dataList.id, "", "", "selesai","selesai")
+                upDateVaccineRequest(dataList.id, "", "", "selesai", "selesai")
             }
         }
 
@@ -68,29 +69,63 @@ class RequestVaccineAdapter(
             vaccinedDate: String,
             status: String
         ) {
-            ApiClient.instances.vaccineRequestPost(id, user,vaccine, vaccinedDate,status).enqueue(object :
-                Callback<DataResponse> {
-                override fun onResponse(
-                    call: Call<DataResponse>,
-                    response: Response<DataResponse>
-                ) {
-                    val value = response.body()?.value
-                    val message = response.body()?.message
+            ApiClient.instances.vaccineRequestPost(id, user, vaccine, vaccinedDate, status)
+                .enqueue(object :
+                    Callback<DataResponse> {
+                    override fun onResponse(
+                        call: Call<DataResponse>,
+                        response: Response<DataResponse>
+                    ) {
+                        val value = response.body()?.value
+                        val message = response.body()?.message
 
-                    if (response.isSuccessful && value == "1") {
-                        Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
-                        mListener.refreshView()
-                    } else {
-                        Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
+                        if (response.isSuccessful && value == "1") {
+                            Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
+                            addVaccineRequest("", binding.tvName.text.toString(), binding.tvImmunization.text.toString(),"jadwalkan_next","belum_selesai")
+                        } else {
+                            Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-                    Toast.makeText(itemView.context, t.message.toString(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
+                    override fun onFailure(call: Call<DataResponse>, t: Throwable) {
+                        Toast.makeText(itemView.context, t.message.toString(), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
         }
+
+        private fun addVaccineRequest(
+            id: String,
+            user: String,
+            vaccine: String,
+            vaccinedDate: String,
+            status: String
+        ) {
+            ApiClient.instances.vaccineRequestPost(id, user, vaccine, vaccinedDate, status)
+                .enqueue(object :
+                    Callback<DataResponse> {
+                    override fun onResponse(
+                        call: Call<DataResponse>,
+                        response: Response<DataResponse>
+                    ) {
+                        val value = response.body()?.value
+                        val message = response.body()?.message
+
+                        if (response.isSuccessful && value == "1") {
+                            Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(itemView.context, message, Toast.LENGTH_SHORT).show()
+                        }
+                        mListener.refreshView()
+                    }
+
+                    override fun onFailure(call: Call<DataResponse>, t: Throwable) {
+                        Toast.makeText(itemView.context, t.message.toString(), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

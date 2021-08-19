@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import apotekku.projectapotekku.utils.Constant
+import apotekku.projectapotekku.utils.PreferencesHelper
 import com.test.inka.adapter.RequestVaccineAdapter
 import com.test.inka.databinding.FragmentHistoryBinding
 import com.test.inka.model.DataResponse
@@ -15,7 +17,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HistoryFragment : Fragment(),RequestVaccineAdapter.iUserRecycler {
+class HistoryFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
+    private lateinit var sharedPref: PreferencesHelper
+
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var adapter: RequestVaccineAdapter
 
@@ -38,10 +42,19 @@ class HistoryFragment : Fragment(),RequestVaccineAdapter.iUserRecycler {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedPref = PreferencesHelper(requireActivity())
+
         layoutManager = LinearLayoutManager(requireActivity())
         binding.rv.layoutManager = layoutManager
 
-        getVaccineRequest("", "selesai", )
+        val userId = sharedPref.getString(Constant.PREF_IS_LOGIN_ID)
+        val userType = sharedPref.getString(Constant.PREF_IS_LOGIN_TYPE)
+        if (userType == "admin") {
+            getVaccineRequest("", "selesai")
+        } else {
+            getVaccineRequest(userId!!, "selesai")
+        }
+
     }
 
     private fun getVaccineRequest(user: String, status: String) {
@@ -53,7 +66,7 @@ class HistoryFragment : Fragment(),RequestVaccineAdapter.iUserRecycler {
                 val result = response.body()?.result
 
                 if (response.isSuccessful && value == "1") {
-                    adapter = RequestVaccineAdapter(result!!,this@HistoryFragment)
+                    adapter = RequestVaccineAdapter(result!!, this@HistoryFragment)
                     binding.rv.adapter = adapter
                     adapter.notifyDataSetChanged()
 

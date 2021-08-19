@@ -7,6 +7,7 @@
     tools:context=".ui.activity.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentRegister"
         android:layout_width="match_parent"
         android:layout_height="270dp"
         android:background="@color/first"
@@ -34,7 +35,7 @@
                     android:id="@+id/tvRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Daftarkan Pasien"
+                    android:text="Daftar Pasien"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -68,13 +69,23 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/etChildName" />
 
-                <EditText
-                    android:id="@+id/etBirth"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/birthTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="tanggal lahir"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/tvBirth" />
+                    app:boxBackgroundColor="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBirth">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/inputBirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <TextView
                     android:id="@+id/tvGender"
@@ -84,7 +95,7 @@
                     android:text="Jenis Kelamin : "
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etBirth" />
+                    app:layout_constraintTop_toBottomOf="@+id/birthTextField" />
 
                 <RadioGroup
                     android:id="@+id/rgGender"
@@ -115,13 +126,23 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgGender" />
 
-                <EditText
-                    android:id="@+id/etDesaKelurahan"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/desaKelurahanTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="desa/kelurahan"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDesaKelurahan" />
+                    app:boxBackgroundColor="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDesaKelurahan">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/inputDesaKelurahan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <TextView
                     android:id="@+id/tvFather"
@@ -131,7 +152,7 @@
                     android:text="Nama Orang Tua (Bapak)"
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etDesaKelurahan" />
+                    app:layout_constraintTop_toBottomOf="@+id/desaKelurahanTextField" />
 
                 <EditText
                     android:id="@+id/etFather"
