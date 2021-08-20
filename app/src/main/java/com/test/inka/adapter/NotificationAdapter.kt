@@ -16,6 +16,7 @@ class NotificationAdapter(
 
         fun bind(dataList: DataResult) {
 
+            binding.tvTitle.text = dataList.title
             binding.tvBody.text = dataList.body
             binding.tvUser.text = dataList.user
             binding.tvDate.text = dataList.created_at

@@ -17,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AccountFragment : Fragment() {
+class AccountFragment : Fragment(), AccountAdapter.iUserRecycler {
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var adapter: AccountAdapter
 
@@ -58,7 +58,7 @@ class AccountFragment : Fragment() {
                 val result = response.body()?.result
 
                 if (response.isSuccessful && value == "1") {
-                    adapter = AccountAdapter(result!!)
+                    adapter = AccountAdapter(result!!,this@AccountFragment)
                     binding.rv.adapter = adapter
                     adapter.notifyDataSetChanged()
                     binding.tvKeterangan.visibility = View.INVISIBLE
@@ -86,6 +86,10 @@ class AccountFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        getAccount()
+    }
+
+    override fun refreshView() {
         getAccount()
     }
 }

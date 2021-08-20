@@ -48,6 +48,26 @@ interface ApiInterface {
     ): Call<DataResponse>
 
     @FormUrlEncoded
+    @POST("delete_account.php")
+    fun deleteAccount(
+        @Field("id") id: String
+    ): Call<DataResponse>
+
+    @FormUrlEncoded
+    @POST("edit_account.php")
+    fun editAccount(
+        @Field("id") id: String,
+        @Field("name") name: String,
+        @Field("birth") birth: String,
+        @Field("gender") gender: String,
+        @Field("desa_kelurahan") desaKelurahan: String,
+        @Field("father") father: String,
+        @Field("mother") mother: String,
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Call<DataResponse>
+
+    @FormUrlEncoded
     @POST("request_vaccine.php")
     fun vaccineRequestPost(
         @Field("id") id: String,
