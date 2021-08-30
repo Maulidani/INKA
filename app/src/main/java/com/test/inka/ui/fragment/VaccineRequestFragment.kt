@@ -1,6 +1,7 @@
 package com.test.inka.ui.fragment
 
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -70,11 +71,14 @@ class VaccineRequestFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
 
         val userId = sharedPref.getString(Constant.PREF_IS_LOGIN_ID)
         val userType = sharedPref.getString(Constant.PREF_IS_LOGIN_TYPE)
+
         if (userType == "admin") {
             getVaccineRequest("", "belum_selesai")
         } else {
             binding.fabAdd.visibility = View.INVISIBLE
-            getVaccineRequest(userId!!, "belum_selesai")
+            binding.frame.visibility = View.VISIBLE
+//            getVaccineRequest(userId!!, "belum_selesai")
+            loadFragment(VaccineFragment())
         }
 
         binding.fabAdd.setOnClickListener {
@@ -90,8 +94,12 @@ class VaccineRequestFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
             val childName = binding.inputChildName.text.toString()
             val vaccine = binding.inputVaccine.text.toString()
 
-            if (childName.isEmpty() || vaccine.isEmpty()){
-                Toast.makeText(requireActivity(), "data tidak boleh ada y6ang kosong", Toast.LENGTH_SHORT).show()
+            if (childName.isEmpty() || vaccine.isEmpty()) {
+                Toast.makeText(
+                    requireActivity(),
+                    "data tidak boleh ada y6ang kosong",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 addVaccineRequest("", childName, vaccine, "", "belum_selesai")
             }
@@ -116,7 +124,7 @@ class VaccineRequestFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
                         binding.parentAdd.visibility = View.INVISIBLE
                         binding.tvKeterangan.visibility = View.INVISIBLE
 
-                        if (result.isEmpty()){
+                        if (result.isEmpty()) {
                             binding.tvKeterangan.visibility = View.VISIBLE
                             binding.tvKeterangan.text = "Belum ada jadwal imunisasi"
                         }
@@ -209,4 +217,10 @@ class VaccineRequestFragment : Fragment(), RequestVaccineAdapter.iUserRecycler {
         })
     }
 
+    private fun loadFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frame, fragment)
+            commit()
+        }
+    }
 }

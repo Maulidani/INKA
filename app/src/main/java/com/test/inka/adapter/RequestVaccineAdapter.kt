@@ -64,7 +64,9 @@ class RequestVaccineAdapter(
 
             if (userType == "pasien"){
                 binding.btnSelesai.visibility = View.GONE
-            }else {
+            }else if (userType == "admin" && dataList.status == "selesai"){
+                binding.btnSelesai.visibility = View.GONE
+            }else if (userType == "admin"){
                 binding.btnSelesai.visibility = View.VISIBLE
             }
 
